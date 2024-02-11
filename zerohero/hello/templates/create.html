@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+<h2>Add student</h2>
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        <label>Enter name</label><br/>
+        <input type="text" name="name"/>
+    </p>
+    <p>
+        <label>Choose courses</label><br/>
+    <div>
+        {% for course in courses %}
+        <input type="checkbox" name="courses" value="{{course.id}}"/>{{ course.name }}<br/>
+        {% endfor %}
+    </div>
+    </p>
+
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>

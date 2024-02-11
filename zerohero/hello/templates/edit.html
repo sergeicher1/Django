@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zero-to-hero.dev</title>
+</head>
+<body>
+<h2>Change product</h2>
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        <label>Enter a name</label><br/>
+        <input type="text" name="name" value="{{product.name}}"/>
+    </p>
+    <p>
+        <label>Enter a price</label><br/>
+        <input type="number" name="price" value="{{product.age}}"/>
+    </p>
+    <p>
+        <label>Enter company</label><br/>
+        <select name="company">
+            {% for company in companies %}
+            <option value="{{company.id}}"
+                    {% if company.id == product.company_id %}
+                    selected
+                    {% endif %}
+            >{{company.name}}
+            </option>
+            {% endfor %}
+        </select>
+    </p>
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>
